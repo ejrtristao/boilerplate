@@ -19,7 +19,6 @@ Esse repositório contém os pacotes necessários para gerar Cruds Básicos
  - `php artisan key:generate`
  - `php artisan ui stisla --auth`
  - `npm install`
- - `npm run dev`# boilerplate
-Repósitorio Inicial Boilerplate
+ - `npm run dev`
 
 
