@@ -62,7 +62,68 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
+        'mio' => [
+            'driver' => 'mysql',
+            'host' => 'mysql.custoagricola.com.br',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+        ],
 
+        'roseira' => [
+            'driver' => 'mysql',
+            'host' => 'mysql.custoagricola.com.br',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+        ],
+
+        'atalaia' => [
+            'driver' => 'mysql',
+            'host' => 'mysql.custoagricola.com.br',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+        ],
+
+        'sumatra' => [
+            'driver' => 'mysql',
+            'host' => 'mysql.custoagricola.com.br',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+        ],
+
+        'angeli' => [
+            'driver' => 'mysql',
+            'host' => 'mysql.custoagricola.com.br',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+        ],
+
+        'dev' => [
+            'driver' => 'mysql',
+            'host' => 'mysql.custoagricola.com.br',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+        ],
+
+        'estancia' => [
+            'driver' => 'mysql',
+            'host' => 'mysql.custoagricola.com.br',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+        ],
+
+        'eb' => [
+            'driver' => 'mysql',
+            'host' => 'mysql.custoagricola.com.br',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+        ],
+
+        'fs' => [
+            'driver' => 'mysql',
+            'host' => 'mysql.custoagricola.com.br',
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+        ],
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),
