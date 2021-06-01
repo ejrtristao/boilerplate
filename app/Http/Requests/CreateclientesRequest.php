@@ -18,6 +18,14 @@ class CreateclientesRequest extends FormRequest
         return true;
     }
 
+    public function messages()
+    {
+        return [
+            'NOMECLIE.required' => 'O Nome do cliente é obrigatório',
+            'APELIDO.required' => 'O Apelido do cliente é obrigatório',
+        ];
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *

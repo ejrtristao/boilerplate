@@ -30,9 +30,15 @@ class clientesController extends AppBaseController
      */
     public function index(Request $request)
     {
-        $clientes = clientes::where('INATIVO', 0)
+        if($request->INATIVO){
+            $inativo = '-1';
+        }else{
+            $inativo = '0';
+        }
+        $clientes = clientes::where('TIPO', 'CLIENTE')
+        ->where('INATIVO', $inativo)
         ->orderBy('NOMECLIE', 'ASC')->get();
-        return view('clientes.index')
+        return view('clientes.index', compact('inativo'))
             ->with('clientes', $clientes);
     }
 

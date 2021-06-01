@@ -3,7 +3,6 @@
         <thead>
             <tr>
         <th>@lang('models/clientes.fields.NOMECLIE')</th>
-        <th>@lang('models/clientes.fields.CNPJCPF')</th>
                 <th colspan="3">@lang('crud.action')</th>
             </tr>
         </thead>
@@ -11,7 +10,6 @@
         @foreach($clientes as $clientes)
             <tr>
             <td>{{ $clientes->NOMECLIE }}</td>
-            <td>{{ $clientes->CNPJCPF }}</td>
                        <td class=" text-center">
                            {!! Form::open(['route' => ['clientes.destroy', $clientes->CHAVPFJ], 'method' => 'delete']) !!}
                            <div class='btn-group'>
