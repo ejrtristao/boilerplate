@@ -28,6 +28,7 @@ Route::get('config/db/index', function () {
 })->name('config/db/index');
 
 Route::resource('clientes', App\Http\Controllers\clientesController::class);
+Route::get('clientes.produtos', [App\Http\Controllers\clientesController::class, 'produtos'])->name('clientes.produtos');
 
 Route::resource('produtos', App\Http\Controllers\produtosController::class);
 

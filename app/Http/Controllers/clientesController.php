@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateclientesRequest;
 use App\Http\Requests\UpdateclientesRequest;
 use App\Repositories\clientesRepository;
+use App\Repositories\produtosRepository;
 use App\Models\clientes;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
@@ -15,10 +16,12 @@ class clientesController extends AppBaseController
 {
     /** @var  clientesRepository */
     private $clientesRepository;
+    private $produtosRepository;
 
-    public function __construct(clientesRepository $clientesRepo)
+    public function __construct(clientesRepository $clientesRepo,produtosRepository $produtosRepo)
     {
         $this->clientesRepository = $clientesRepo;
+        $this->produtosRepository = $produtosRepo;
     }
 
     /**
@@ -49,7 +52,8 @@ class clientesController extends AppBaseController
      */
     public function create()
     {
-        return view('clientes.create');
+        $produtos = $this->produtosRepository->all();
+        return view('clientes.create', compact('produtos'));
     }
 
     /**
@@ -62,11 +66,12 @@ class clientesController extends AppBaseController
     public function store(CreateclientesRequest $request)
     {
         $input = $request->all();
-
         $clientes = $this->clientesRepository->create($input);
-
+        if($input['Produto']){
+            $cliente = clientes::find($clientes->CHAVPFJ);
+            $cliente->Produtos()->sync($input['Produto']);
+        }
         Flash::success(__('messages.saved', ['model' => __('models/clientes.singular')]));
-
         return redirect(route('clientes.index'));
     }
 
@@ -100,14 +105,14 @@ class clientesController extends AppBaseController
     public function edit($id)
     {
         $clientes = $this->clientesRepository->find($id);
-
+        $produtos = $this->produtosRepository->all();
         if (empty($clientes)) {
             Flash::error(__('messages.not_found', ['model' => __('models/clientes.singular')]));
 
             return redirect(route('clientes.index'));
         }
 
-        return view('clientes.edit')->with('clientes', $clientes);
+        return view('clientes.edit', compact('produtos'))->with('clientes', $clientes);
     }
 
     /**
@@ -121,17 +126,17 @@ class clientesController extends AppBaseController
     public function update($id, UpdateclientesRequest $request)
     {
         $clientes = $this->clientesRepository->find($id);
-
         if (empty($clientes)) {
             Flash::error(__('messages.not_found', ['model' => __('models/clientes.singular')]));
-
             return redirect(route('clientes.index'));
         }
-
-        $clientes = $this->clientesRepository->update($request->all(), $id);
-
+        $input = $request->all();
+        $clientes = $this->clientesRepository->update($input, $id);
+        if($input['Produto']){
+            $cliente = clientes::find($clientes->CHAVPFJ);
+            $cliente->Produtos()->sync($input['Produto']);
+        }
         Flash::success(__('messages.updated', ['model' => __('models/clientes.singular')]));
-
         return redirect(route('clientes.index'));
     }
 
@@ -145,6 +150,27 @@ class clientesController extends AppBaseController
      * @return Response
      */
     public function destroy($id)
+    {
+        $clientes = $this->clientesRepository->find($id);
+        if (empty($clientes)) {
+            Flash::error(__('messages.not_found', ['model' => __('models/clientes.singular')]));
+            return redirect(route('clientes.index'));
+        }
+        $this->clientesRepository->delete($id);
+        Flash::success(__('messages.deleted', ['model' => __('models/clientes.singular')]));
+        return redirect(route('clientes.index'));
+    }
+
+    /**
+     * Adiciona produtos ao cliente
+     *
+     * @param int $id
+     *
+     * @throws \Exception
+     *
+     * @return Response
+     */
+    public function produtosAdiciona($id)
     {
         $clientes = $this->clientesRepository->find($id);
         if (empty($clientes)) {

@@ -21,7 +21,6 @@
                                         <div class="row">
                                             @include('clientes.fields')
                                         </div>
-
                                     {!! Form::close() !!}
                             </div>
                          </div>

@@ -118,11 +118,26 @@
 
 
 
+<fieldset class="form-group col-sm-12">
+    <div class="row">
+      <legend class="col-form-label col-sm-2 pt-0">Produtos</legend>
+      <div class="col-sm-10">
+      
+@foreach ($produtos as $p)
+<div class="form-check">
+    {{ Form::checkbox('Produto['.$p->id.']', $p->id,null, ['class' => 'form-check-input']) }} 
+    <label class="form-check-label">{{ $p->descricao }}</label>
+</div>
+@endforeach
+      </div>
+    </div>
+  </fieldset>
 <!-- Submit Field -->
 <div class="form-group col-sm-12">
     {!! Form::submit(__('crud.save'), ['class' => 'btn btn-primary']) !!}
     <a href="{{ route('clientes.index') }}" class="btn btn-light">@lang('crud.cancel')</a>
 </div>
+
 
 
 

@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 
 
 
@@ -155,5 +155,16 @@ class clientes extends Model
         'APELIDO' => 'required',
     ];
 
-    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    **/
+    public function Produtos()
+    {
+        // return $this->belongsToMany(\App\Models\produtos::class, 'PFJ_produtos', 'Produtos_id');
+        // return $this->belongsToMany(\App\Models\produtos::class, 'PFJ_Produtos', 'PFJ_id', 'Produtos_id');
+        return $this->belongsToMany(\App\Models\produtos::class,'ClientesProdutos', 'PFJ_id', 'Produto_id');
+    }
+            //    $this->belongsToMany('relacao', 'nome da tabela pivot', 'key ref. authors em pivot', 'key ref. books em pivot')
+
+
 }
