@@ -12,9 +12,16 @@ return [
     | these language lines according to your application's requirements.
     |
     */
-
-    'failed' => 'Essas credenciais não correspondem aos nossos registros.',
-    'password' => 'Sua senha esta incorreta',
-    'throttle' => 'Foram muitas tentativas de acesso. Por favor, tente novamente em  :seconds segundos.',
-
+    'add_new'      => 'Novo',
+    'cancel'       => 'Cancelar',
+    'save'         => 'Salvar',
+    'edit'         => 'Editar',
+    'detail'       => 'Detalhes',
+    'back'         => 'Voltar',
+    'action'       => 'Ação',
+    'id'           => 'Id',
+    'created_at'   => 'Criado em',
+    'updated_at'   => 'Atualizado em',
+    'deleted_at'   => 'Excluído em',
+    'are_you_sure' => 'Tem certeza?',
 ];
